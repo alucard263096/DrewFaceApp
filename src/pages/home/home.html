@@ -1,0 +1,52 @@
+﻿<ion-content >
+  <div style="height:calc(30%);">
+    <ion-slides pager>
+      <ion-slide *ngFor="let item of indexbanners" (click)="bannerGo(item)">
+        <img src="{{uploadpath}}banner/{{item.pic}}" />
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of paintingtype" col-3 text-center>
+        <img src="{{uploadpath}}paintingtype/{{item.icon}}" /><br />
+        {{item.name}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div >
+    <ion-segment [(ngModel)]="pet"  mode="md">
+      <ion-segment-button value="kittens">
+        丹青榜
+      </ion-segment-button>
+      <ion-segment-button value="puppies">
+        大家喜欢
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="pet">
+
+    <ion-grid *ngSwitchCase="'puppies'">
+      <ion-row>
+        <ion-col *ngFor="let item of upPainting" col-6 text-center>
+          <ion-card>
+            <img src="{{uploadpath}}painting/{{item.product_img}}" />
+            <div>{{item.title}}</div>
+            <div><ion-icon name="heart"></ion-icon>{{item.up}}</div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngSwitchCase="'kittens'">
+      <ion-row>
+        <ion-col *ngFor="let item of buycountPainting" col-6 text-center>
+          <ion-card>
+            <img src="{{uploadpath}}painting/{{item.product_img}}" />
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
